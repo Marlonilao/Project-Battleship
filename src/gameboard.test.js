@@ -48,3 +48,15 @@ test('Gameboards should be able to place ships at specific coordinates by callin
   ];
   expect(sampleBoard.getBoard()).toEqual(expected2);
 });
+
+test('test ship.boardCoordinates if working', () => {
+  const sampleBoard = gameboard();
+  const sampleShip = ships(3);
+  const coordinates = [
+    [0, 0],
+    [0, 1],
+    [0, 2],
+  ];
+  sampleBoard.placeShip(sampleShip, coordinates);
+  expect(sampleShip.boardCoordinates).toEqual(coordinates);
+});

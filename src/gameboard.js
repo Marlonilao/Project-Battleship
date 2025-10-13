@@ -20,6 +20,8 @@ export function gameboard() {
     coordinates.forEach((coordinate) => {
       board[coordinate[0]][coordinate[1]] = 1;
     });
+
+    ship['boardCoordinates'] = coordinates;
   }
 
   return {
