@@ -1,5 +1,3 @@
-import { ships } from './ships';
-
 export function gameboard() {
   const board = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -33,9 +31,7 @@ export function gameboard() {
     for (let i = 0; i < shipsOnBoard.length; i++) {
       if (
         shipsOnBoard[i].boardCoordinates.some(
-          (arr) =>
-            arr.length === coordinates.length &&
-            arr.every((elem, i) => elem === coordinates[i]),
+          (arr) => arr[0] === coordinates[0] && arr[1] === coordinates[1],
         )
       ) {
         shipsOnBoard[i].hit();
