@@ -1,6 +1,5 @@
 function ships(length) {
   let hits = null;
-  let isSank = false;
 
   function getHits() {
     return hits;
@@ -11,11 +10,8 @@ function ships(length) {
   }
 
   function isSunk() {
-    if (hits === length) {
-      isSank = true;
-    }
-
-    return isSank;
+    if (hits === length) return true;
+    else return false;
   }
 
   return {

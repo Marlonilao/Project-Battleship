@@ -30,23 +30,36 @@ export function gameboard() {
   }
 
   function receiveAttack(coordinates) {
-    for (const ship of shipsOnBoard) {
+    for (let i = 0; i < shipsOnBoard.length; i++) {
       if (
-        ship.boardCoordinates.some(
-          (arr) => arr[0] === coordinates[0] && arr[1] === coordinates[1],
+        shipsOnBoard[i].boardCoordinates.some(
+          (arr) =>
+            arr.length === coordinates.length &&
+            arr.every((elem, i) => elem === coordinates[i]),
         )
       ) {
-        return ship.hit();
+        shipsOnBoard[i].hit();
       } else {
         board[coordinates[0]][coordinates[1]] = 'M';
-        return 'MISS';
       }
     }
+  }
+
+  function areAllShipsSunk() {
+    let index = 0;
+    while (index < shipsOnBoard.length) {
+      if (shipsOnBoard[index++].isSunk() === false) {
+        return false;
+      }
+    }
+    return true;
   }
 
   return {
     getBoard,
     placeShip,
     receiveAttack,
+    areAllShipsSunk,
+    shipsOnBoard,
   };
 }
