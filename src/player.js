@@ -1,15 +1,14 @@
-function player(gameboard) {
+function player(gameboard, type = 'real') {
   const board = gameboard;
-  return {
-    board,
-  };
+  if (type == 'real') {
+    return {
+      board,
+    };
+  } else if (type == 'computer') {
+    return {
+      board,
+    };
+  }
 }
 
-function botPlayer(gameboard) {
-  const board = gameboard;
-  return {
-    board,
-  };
-}
-
-export { player, botPlayer };
+export { player };
