@@ -1,0 +1,45 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  width: 1000px;
+  margin: 20px auto;
+}
+
+#header div:first-child {
+  font-weight: bolder;
+  font-size: 2rem;
+}
+
+#battlefield-container {
+  display: flex;
+  justify-content: space-around;
+  width: 1000px;
+  margin: 80px auto;
+  padding-bottom: 50px;
+}
+
+#battlefield-container > div {
+  width: 400px;
+  height: 400px;
+  text-align: center;
+}
+
+#user-board,
+#opponent-board {
+  width: 400px;
+  height: 400px;
+  border: 1px solid blue;
+}
+
+#footer {
+  width: 1000px;
+  margin: 20px auto;
+  text-align: center;
+  border-top: 0.5px solid grey;
+}
