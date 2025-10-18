@@ -34,7 +34,7 @@
 #opponent-board {
   width: 400px;
   height: 400px;
-  border: 1px solid blue;
+  border: 1px solid lightblue;
 }
 
 #footer {
@@ -42,4 +42,26 @@
   margin: 20px auto;
   text-align: center;
   border-top: 0.5px solid grey;
+}
+
+#user-board > div {
+  width: 400px;
+  height: 40px;
+  display: flex;
+}
+
+#user-board > div > div {
+  width: 40px;
+  height: 40px;
+  border: 1px solid blue;
+}
+
+#user-board > div > div.ship {
+  border: 1px solid blue;
+  background-color: blue;
+}
+
+#user-board > div > div.hit {
+  border: 1px solid red;
+  background-color: red;
 }

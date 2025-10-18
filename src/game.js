@@ -88,3 +88,5 @@ function createOpponentBoard() {
     computer.board.placeShip(botShip, coordinates[i]);
   }
 }
+
+export { user, computer, createUserBoard, createOpponentBoard };
