@@ -6,6 +6,8 @@ function renderUserBoard(user) {
     userBoardDom.appendChild(row);
     for (let j = 0; j < 10; j++) {
       const cell = document.createElement('div');
+      cell.setAttribute('data-row', `${i}`);
+      cell.setAttribute('data-column', `${j}`);
       renderCell(board[i][j], cell);
       row.appendChild(cell);
     }
@@ -22,4 +24,20 @@ function renderCell(coordinate, cell) {
   }
 }
 
-export { renderUserBoard };
+function renderOpponentBoard(opponent) {
+  const opponentBoardDom = document.querySelector('#opponent-board');
+  const board = opponent.board.getBoard();
+  for (let i = 0; i < 10; i++) {
+    const row = document.createElement('div');
+    opponentBoardDom.appendChild(row);
+    for (let j = 0; j < 10; j++) {
+      const cell = document.createElement('div');
+      cell.setAttribute('data-row', `${i}`);
+      cell.setAttribute('data-column', `${j}`);
+      renderCell(board[i][j], cell);
+      row.appendChild(cell);
+    }
+  }
+}
+
+export { renderUserBoard, renderOpponentBoard };

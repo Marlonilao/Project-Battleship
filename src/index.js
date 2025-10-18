@@ -1,6 +1,6 @@
 import './stylesheet.css';
-import { user, createUserBoard } from './game';
-import { renderUserBoard } from './dom';
+import { computer, user } from './game';
+import { renderUserBoard, renderOpponentBoard } from './dom';
 
-createUserBoard();
 renderUserBoard(user);
+renderOpponentBoard(computer);
