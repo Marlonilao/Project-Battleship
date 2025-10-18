@@ -5,7 +5,7 @@ import { ships } from './ships';
 const user = player(gameboard());
 const computer = player(gameboard(), 'computer');
 
-function createUserBoard() {
+function placeUserShipsOnBoard() {
   for (let i = 0; i < 10; i++) {
     const shipsLength = [1, 1, 1, 1, 2, 2, 2, 3, 3, 4];
     const userShip = ships(shipsLength[i]);
@@ -47,7 +47,7 @@ function createUserBoard() {
   }
 }
 
-function createOpponentBoard() {
+function placeOpponentShipsOnBoard() {
   for (let i = 0; i < 10; i++) {
     const shipsLength = [1, 1, 1, 1, 2, 2, 2, 3, 3, 4];
     const botShip = ships(shipsLength[i]);
@@ -89,4 +89,6 @@ function createOpponentBoard() {
   }
 }
 
-export { user, computer, createUserBoard, createOpponentBoard };
+placeUserShipsOnBoard();
+placeOpponentShipsOnBoard();
+export { user, computer, placeUserShipsOnBoard, placeOpponentShipsOnBoard };
