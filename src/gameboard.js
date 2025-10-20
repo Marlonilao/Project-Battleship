@@ -35,6 +35,7 @@ export function gameboard() {
           (arr) => arr[0] === coordinates[0] && arr[1] === coordinates[1],
         )
       ) {
+        board[coordinates[0]][coordinates[1]] = 'X';
         shipsOnBoard[index].hit();
         return 'HIT';
       }

@@ -1,3 +1,5 @@
+import { user, computer } from './game';
+
 function renderUserBoard(user) {
   const userBoardDom = document.querySelector('#user-board');
   const board = user.board.getBoard();
@@ -40,4 +42,20 @@ function renderOpponentBoard(opponent) {
   }
 }
 
-export { renderUserBoard, renderOpponentBoard };
+function userTurnToAttack() {
+  const opponentBoardDom = document.querySelector('#opponent-board');
+  const board = computer.board.getBoard();
+  const cells = document.querySelectorAll('#opponent-board > div > div');
+  cells.forEach((cell) => {
+    cell.style.cursor = 'pointer';
+    cell.addEventListener('click', (e) => {
+      const coordinate = [+e.target.dataset.row, +e.target.dataset.column];
+      computer.board.receiveAttack(coordinate);
+      renderCell(board[+e.target.dataset.row][+e.target.dataset.column], cell);
+    });
+  });
+}
+
+function computerTurnToAttack() {}
+
+export { renderUserBoard, renderOpponentBoard, userTurnToAttack };
