@@ -28,17 +28,20 @@ export function gameboard() {
   }
 
   function receiveAttack(coordinates) {
-    for (let i = 0; i < shipsOnBoard.length; i++) {
+    let index = 0;
+    while (index < 10) {
       if (
-        shipsOnBoard[i].boardCoordinates.some(
+        shipsOnBoard[index].boardCoordinates.some(
           (arr) => arr[0] === coordinates[0] && arr[1] === coordinates[1],
         )
       ) {
-        shipsOnBoard[i].hit();
-      } else {
-        board[coordinates[0]][coordinates[1]] = 'M';
+        shipsOnBoard[index].hit();
+        return 'HIT';
       }
+      index++;
     }
+    board[coordinates[0]][coordinates[1]] = 'M';
+    return 'MISS';
   }
 
   function areAllShipsSunk() {
