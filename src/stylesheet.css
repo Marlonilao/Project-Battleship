@@ -66,6 +66,10 @@
 
 #user-board > div > div.hit,
 #opponent-board > div > div.hit {
-  border: 1px solid red;
   background-color: red;
+}
+
+#user-board > div > div.missed,
+#opponent-board > div > div.missed {
+  background-color: darkgrey;
 }
