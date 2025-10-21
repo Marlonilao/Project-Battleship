@@ -1,4 +1,4 @@
-import { user, computer } from './game';
+import { user, computer } from './index';
 
 function renderUserBoard(user) {
   const userBoardDom = document.querySelector('#user-board');
@@ -56,6 +56,21 @@ function userTurnToAttack() {
   });
 }
 
-function computerTurnToAttack() {}
+function computerTurnToAttack() {
+  const userBoardDom = document.querySelector('#user-board');
+  const board = user.board.getBoard();
+  const cells = document.querySelectorAll('#user-board > div > div');
+  cells.forEach((cell) => {
+    cell.style.cursor = 'pointer';
+    cell.addEventListener('click', (e) => {
+      console.log(e.target.dataset.row, e.target.dataset.column);
+    });
+  });
+}
 
-export { renderUserBoard, renderOpponentBoard, userTurnToAttack };
+export {
+  renderUserBoard,
+  renderOpponentBoard,
+  userTurnToAttack,
+  computerTurnToAttack,
+};
