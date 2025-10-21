@@ -43,7 +43,6 @@ function renderOpponentBoard(opponent) {
 }
 
 function userTurnToAttack() {
-  const opponentBoardDom = document.querySelector('#opponent-board');
   const board = computer.board.getBoard();
   const cells = document.querySelectorAll('#opponent-board > div > div');
   cells.forEach((cell) => {
@@ -57,15 +56,13 @@ function userTurnToAttack() {
 }
 
 function computerTurnToAttack() {
-  const userBoardDom = document.querySelector('#user-board');
   const board = user.board.getBoard();
-  const cells = document.querySelectorAll('#user-board > div > div');
-  cells.forEach((cell) => {
-    cell.style.cursor = 'pointer';
-    cell.addEventListener('click', (e) => {
-      console.log(e.target.dataset.row, e.target.dataset.column);
-    });
-  });
+  const coordinate = computer.generateRandomCoordinate();
+  user.board.receiveAttack(coordinate);
+  const cell = document.querySelector(
+    `[data-row='${coordinate[0]}'][data-column='${coordinate[1]}']`,
+  );
+  renderCell(board[coordinate[0]][coordinate[1]], cell);
 }
 
 export {

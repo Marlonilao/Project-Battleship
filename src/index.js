@@ -102,8 +102,6 @@ placeOpponentShipsOnBoard();
 renderUserBoard(user);
 renderOpponentBoard(computer);
 
-let activePlayer = user;
-userTurnToAttack();
 computerTurnToAttack();
 
 export { user, computer };
