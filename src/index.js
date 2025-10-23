@@ -1,14 +1,8 @@
 import './stylesheet.css';
-import {
-  renderUserBoard,
-  renderOpponentBoard,
-  userTurnToAttack,
-  computerTurnToAttack,
-} from './dom';
+import { renderUserBoard, renderOpponentBoard, userTurnToAttack } from './dom';
 import { gameboard } from './gameboard';
 import { player } from './player';
 import { ships } from './ships';
-
 const user = player(gameboard());
 const computer = player(gameboard(), 'computer');
 
@@ -102,6 +96,21 @@ placeOpponentShipsOnBoard();
 renderUserBoard(user);
 renderOpponentBoard(computer);
 
-computerTurnToAttack();
+let activePlayer = user;
 
-export { user, computer };
+function setActivePlayer(player) {
+  activePlayer = player;
+}
+
+function checkIfGameOver() {
+  if (user.board.areAllShipsSunk() || computer.board.areAllShipsSunk()) {
+    return true;
+  }
+  return false;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  userTurnToAttack();
+});
+
+export { user, computer, setActivePlayer, checkIfGameOver, activePlayer };
