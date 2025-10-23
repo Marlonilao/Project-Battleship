@@ -109,8 +109,8 @@ function checkIfGameOver() {
   return false;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  userTurnToAttack();
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//   userTurnToAttack();
+// });
 
 export { user, computer, setActivePlayer, checkIfGameOver, activePlayer };

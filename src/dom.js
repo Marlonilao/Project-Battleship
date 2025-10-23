@@ -51,7 +51,7 @@ function renderOpponentBoard(opponent) {
 function userAttackHandler(e) {
   const board = computer.board.getBoard();
   const coordinate = [+e.target.dataset.row, +e.target.dataset.column];
-  const hitOrMiss = computer.board.receiveAttack(coordinate);
+  let hitOrMiss = computer.board.receiveAttack(coordinate);
   const cell = document.querySelector(
     `#opponent-board [data-row='${coordinate[0]}'][data-column='${coordinate[1]}']`,
   );
@@ -65,12 +65,14 @@ function userAttackHandler(e) {
   } else if (hitOrMiss == 'MISS') {
     disableUserAttack();
     setActivePlayer(computer);
+    updateMessage("Opponent's turn. Please wait");
     setTimeout(computerTurnToAttack, 800);
   }
   renderCell(board[+e.target.dataset.row][+e.target.dataset.column], cell);
 }
 
 function userTurnToAttack() {
+  updateMessage('Your turn');
   const cells = document.querySelectorAll('#opponent-board > div > div');
   cells.forEach((cell) => {
     cell.style.cursor = 'pointer';
@@ -89,7 +91,7 @@ function disableUserAttack() {
 function computerTurnToAttack() {
   const board = user.board.getBoard();
   const coordinate = computer.generateRandomCoordinate();
-  const hitOrMiss = user.board.receiveAttack(coordinate);
+  let hitOrMiss = user.board.receiveAttack(coordinate);
   const cell = document.querySelector(
     `[data-row='${coordinate[0]}'][data-column='${coordinate[1]}']`,
   );
@@ -111,11 +113,28 @@ function renderGameOver() {
   const winner = activePlayer == user ? 'User' : 'Computer';
   const container = document.querySelector('#battlefield-container');
   container.innerHTML = `<p>Game over! ${winner} wins!</p>`;
+  updateMessage('');
 }
+
+const btn = document.querySelector('#playBtn');
+btn.addEventListener('click', () => {
+  const divs = document.querySelectorAll('#opponent-board div.ship');
+  divs.forEach((div) => {
+    div.classList.remove('ship');
+  });
+  userTurnToAttack();
+});
+
+function updateMessage(message) {
+  const messageContainer = document.querySelector('#message-container > p');
+  messageContainer.textContent = message;
+}
+
 export {
   renderUserBoard,
   renderOpponentBoard,
   userTurnToAttack,
   computerTurnToAttack,
   disableUserAttack,
+  updateMessage,
 };
