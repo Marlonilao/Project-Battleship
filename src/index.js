@@ -109,8 +109,106 @@ function checkIfGameOver() {
   return false;
 }
 
-// document.addEventListener('DOMContentLoaded', () => {
-//   userTurnToAttack();
-// });
+// function generateRandomSingleCoordinate() {
+//   const row = Math.floor(Math.random() * 10);
+//   const column = Math.floor(Math.random() * 10);
+//   return [row, column];
+// }
+
+function generateRandomCoordinates() {
+  const randomCoordinates = [];
+  const shipsLength = [1, 1, 1, 1, 2, 2, 2, 3, 3, 4];
+  for (let i = 0; i < 10; i++) {
+    const randomCoordinatesForThisLoop = [];
+    if (i == 0) {
+      const row = Math.floor(Math.random() * 10);
+      const column = Math.floor(Math.random() * 10);
+      let randomCoordinate = [row, column];
+      randomCoordinatesForThisLoop.push(randomCoordinate);
+      randomCoordinates.push(randomCoordinatesForThisLoop);
+    } else if (shipsLength[i] == 1) {
+      const row = Math.floor(Math.random() * 10);
+      const column = Math.floor(Math.random() * 10);
+      let randomCoordinate = [row, column];
+      let index = 0;
+      while (index < randomCoordinates.length) {
+        if (
+          randomCoordinates[index].some(
+            (arr) =>
+              arr[0] == randomCoordinate[0] && arr[1] == randomCoordinate[1],
+          )
+        ) {
+          const row = Math.floor(Math.random() * 10);
+          const column = Math.floor(Math.random() * 10);
+          randomCoordinate = [row, column];
+        }
+        index++;
+      }
+      randomCoordinatesForThisLoop.push(randomCoordinate);
+      randomCoordinates.push(randomCoordinatesForThisLoop);
+    } else if (shipsLength[i] > 1) {
+      function horizontalOrVertical() {
+        const shapes = ['horizontal', 'vertical'];
+        const index = Math.floor(Math.random() * 2);
+        return shapes[index];
+      }
+      const shape = horizontalOrVertical();
+      if (shape == 'horizontal') {
+        const row = Math.floor(Math.random() * 10);
+        let column = Math.floor(Math.random() * 6);
+        for (let j = 0; j < shipsLength[i]; j++) {
+          const randomCoordinate = [row, column++];
+          let isDuplicate = false;
+          let index = 0;
+          while (index < randomCoordinates.length) {
+            if (
+              randomCoordinates[index].some(
+                (arr) =>
+                  arr[0] == randomCoordinate[0] &&
+                  arr[1] == randomCoordinate[1],
+              )
+            ) {
+              isDuplicate = true;
+            }
+            index++;
+          }
+          if (isDuplicate) {
+            continue;
+          }
+          randomCoordinatesForThisLoop.push(randomCoordinate);
+        }
+        randomCoordinates.push(randomCoordinatesForThisLoop);
+      } else if (shape == 'vertical') {
+        let row = Math.floor(Math.random() * 6);
+        const column = Math.floor(Math.random() * 10);
+        for (let j = 0; j < shipsLength[i]; j++) {
+          const randomCoordinate = [row++, column];
+          let isDuplicate = false;
+          let index = 0;
+          while (index < randomCoordinates.length) {
+            if (
+              randomCoordinates[index].some(
+                (arr) =>
+                  arr[0] == randomCoordinate[0] &&
+                  arr[1] == randomCoordinate[1],
+              )
+            ) {
+              isDuplicate = true;
+            }
+            index++;
+          }
+          if (isDuplicate) {
+            continue;
+          }
+          randomCoordinatesForThisLoop.push(randomCoordinate);
+        }
+        randomCoordinates.push(randomCoordinatesForThisLoop);
+      }
+    }
+  }
+  return randomCoordinates;
+}
+
+console.log(generateRandomCoordinates());
 
 export { user, computer, setActivePlayer, checkIfGameOver, activePlayer };
