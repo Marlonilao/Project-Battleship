@@ -75,17 +75,15 @@ const coordinates2 = [
 ];
 
 function placeUserShipsOnBoard(coordinates) {
-  const shipsLength = [1, 1, 1, 1, 2, 2, 2, 3, 3, 4];
   for (let i = 0; i < 10; i++) {
-    const userShip = ships(shipsLength[i]);
+    const userShip = ships(coordinates[i].length);
     user.board.placeShip(userShip, coordinates[i]);
   }
 }
 
 function placeOpponentShipsOnBoard(coordinates) {
-  const shipsLength = [1, 1, 1, 1, 2, 2, 2, 3, 3, 4];
   for (let i = 0; i < 10; i++) {
-    const botShip = ships(shipsLength[i]);
+    const botShip = ships(coordinates[i].length);
     computer.board.placeShip(botShip, coordinates[i]);
   }
 }

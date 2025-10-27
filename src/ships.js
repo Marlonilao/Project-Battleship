@@ -1,22 +1,19 @@
 function ships(length) {
-  let hits = null;
-
-  function getHits() {
-    return hits;
-  }
+  let hits = 0;
 
   function hit() {
     hits++;
   }
 
   function isSunk() {
-    if (hits === length) return true;
-    else return false;
+    return hits == length;
   }
 
   return {
     length,
-    getHits,
+    get hits() {
+      return hits;
+    },
     hit,
     isSunk,
   };
