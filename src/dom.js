@@ -119,15 +119,6 @@ function renderGameOver() {
   updateMessage('');
 }
 
-const btn = document.querySelector('#playBtn');
-btn.addEventListener('click', () => {
-  const divs = document.querySelectorAll('#opponent-board div.ship');
-  divs.forEach((div) => {
-    div.classList.remove('ship');
-  });
-  userTurnToAttack();
-});
-
 function updateMessage(message) {
   const messageContainer = document.querySelector('#message-container > p');
   messageContainer.textContent = message;
@@ -159,6 +150,18 @@ function opponentRandomize() {
 const opponentRandomizeBtn = document.querySelector('#opponentRandomizeBtn');
 opponentRandomizeBtn.addEventListener('click', () => {
   opponentRandomize();
+});
+
+const btn = document.querySelector('#playBtn');
+
+btn.addEventListener('click', () => {
+  const divs = document.querySelectorAll('#opponent-board div.ship');
+  divs.forEach((div) => {
+    div.classList.remove('ship');
+  });
+  userRandomizeBtn.classList.add('hide');
+  opponentRandomizeBtn.classList.add('hide');
+  userTurnToAttack();
 });
 
 export {

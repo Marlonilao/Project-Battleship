@@ -73,3 +73,7 @@
 #opponent-board > div > div.missed {
   background-color: darkgrey;
 }
+
+.hide {
+  display: none;
+}
