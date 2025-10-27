@@ -203,4 +203,13 @@ function generateRandomCoordinates() {
   return randomCoordinates;
 }
 
-export { user, computer, setActivePlayer, checkIfGameOver, activePlayer };
+export {
+  user,
+  computer,
+  setActivePlayer,
+  checkIfGameOver,
+  activePlayer,
+  generateRandomCoordinates,
+  placeUserShipsOnBoard,
+  placeOpponentShipsOnBoard,
+};

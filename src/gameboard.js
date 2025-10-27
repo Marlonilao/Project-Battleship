@@ -1,5 +1,5 @@
 export function gameboard() {
-  const board = [
+  let board = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -16,6 +16,21 @@ export function gameboard() {
 
   function getBoard() {
     return board;
+  }
+
+  function resetBoard() {
+    board = [
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ];
   }
 
   function placeShip(ship, coordinates) {
@@ -55,11 +70,19 @@ export function gameboard() {
     return true;
   }
 
+  function resetShips() {
+    if (shipsOnBoard.length > 0) {
+      shipsOnBoard.length = 0;
+    }
+  }
+
   return {
     getBoard,
     placeShip,
     receiveAttack,
     areAllShipsSunk,
     shipsOnBoard,
+    resetShips,
+    resetBoard,
   };
 }

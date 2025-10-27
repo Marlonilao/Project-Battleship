@@ -4,6 +4,9 @@ import {
   setActivePlayer,
   checkIfGameOver,
   activePlayer,
+  placeUserShipsOnBoard,
+  generateRandomCoordinates,
+  placeOpponentShipsOnBoard,
 } from './index';
 
 function renderUserBoard(user) {
@@ -129,6 +132,34 @@ function updateMessage(message) {
   const messageContainer = document.querySelector('#message-container > p');
   messageContainer.textContent = message;
 }
+
+function userRandomize() {
+  const board = document.querySelector('#user-board');
+  user.board.resetBoard();
+  user.board.resetShips();
+  board.innerHTML = '';
+  placeUserShipsOnBoard(generateRandomCoordinates());
+  renderUserBoard(user);
+}
+
+const userRandomizeBtn = document.querySelector('#userRandomizeBtn');
+userRandomizeBtn.addEventListener('click', () => {
+  userRandomize();
+});
+
+function opponentRandomize() {
+  const board = document.querySelector('#opponent-board');
+  computer.board.resetBoard();
+  computer.board.resetShips();
+  board.innerHTML = '';
+  placeOpponentShipsOnBoard(generateRandomCoordinates());
+  renderOpponentBoard(computer);
+}
+
+const opponentRandomizeBtn = document.querySelector('#opponentRandomizeBtn');
+opponentRandomizeBtn.addEventListener('click', () => {
+  opponentRandomize();
+});
 
 export {
   renderUserBoard,
