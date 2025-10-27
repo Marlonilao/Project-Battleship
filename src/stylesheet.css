@@ -77,3 +77,8 @@
 .hide {
   display: none;
 }
+
+#user-board-container > *,
+#opponent-board-container > * {
+  margin-bottom: 10px;
+}
